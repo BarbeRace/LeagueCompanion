@@ -21,7 +21,7 @@ public class LoginController implements Initializable {
 
     ObservableList list = FXCollections.observableArrayList();
     ObservableList<String> positionsObsList = FXCollections.observableList(Core.positions);
-    private int set = 1; // varie entre 1 et 2 (les 2 sets proposés par op gg)
+    private int set = Core.firstPerkSet;
     private DetailsDto champDetails;
     @FXML private Label textHelper;
     @FXML private ImageView loaderGif;
@@ -80,7 +80,6 @@ public class LoginController implements Initializable {
             champTile.setImage(img);
             champName.setText(selectedChamp);
             if(!"".equals(details.getPosition())) {
-                System.out.println(details.getPosition());
                 positionSelector.setValue(details.getPosition());
             }
         } catch (Exception ex) {
@@ -95,12 +94,12 @@ public class LoginController implements Initializable {
 
     @FXML
     private void toggleSet(MouseEvent event) {
-        if(this.set == 1) {
-            this.set = 2;
+        if(this.set == Core.firstPerkSet) {
+            this.set = Core.secondPerkSet;
             this.linkToggleSet.setText("voir set 1");
             this.bindPerksAndFragmentsSet2(this.champDetails);
         } else {
-            this.set = 1;
+            this.set = Core.firstPerkSet;
             this.linkToggleSet.setText("voir set 2");
             this.bindPerksAndFragments(this.champDetails);
         }
@@ -139,8 +138,6 @@ public class LoginController implements Initializable {
     }
 
     private void bindPerksAndFragments(DetailsDto details) {
-        System.out.println(details.getPerks().toString());
-        System.out.println(details.getFragments().toString());
         Image img = new Image("resources/riotIcons/perks/" + details.getPerks().get(0) + ".png");
         Image img1 = new Image("resources/riotIcons/perks/" + details.getPerks().get(1) + ".png");
         Image img2 = new Image("resources/riotIcons/perks/" + details.getPerks().get(2) + ".png");
@@ -180,8 +177,6 @@ public class LoginController implements Initializable {
     }
 
     private void bindPerksAndFragmentsSet2(DetailsDto details) {
-        System.out.println(details.getPerks().toString());
-        System.out.println(details.getFragments().toString());
         Image img = new Image("resources/riotIcons/perks/" + details.getPerks().get(12) + ".png");
         Image img1 = new Image("resources/riotIcons/perks/" + details.getPerks().get(13) + ".png");
         Image img2 = new Image("resources/riotIcons/perks/" + details.getPerks().get(14) + ".png");

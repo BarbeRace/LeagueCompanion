@@ -11,8 +11,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * Regroupe les fonctions statiques utilitaires et constantes de l'application
+ */
 public class Core {
 
+    public static final Integer firstPerkSet = 1;
+    public static final Integer secondPerkSet = 2;
+    public static final String opggDetailChampURI = "http://www.op.gg/champion/";
+    public static final String gamepediaChampsNamesList = "https://lol.gamepedia.com/Portal:Champions/List";
+    public static final String specialCharsRegex = "[^A-Za-z0-9]";
+
+    /**
+     * Tableau de String des positions dans la faille de l'invocateur
+     */
     public static final ArrayList<String> positions = new ArrayList<String>() {
         {
             add("top");
@@ -24,7 +36,7 @@ public class Core {
     };
 
     /**
-     * Effectue la requête get et retourne la réponse dans un string
+     * Effectue la requête get et retourne la réponse (feuille html) dans un string
      */
     public static String getHTML(String urlToRead) throws Exception {
         StringBuilder result = new StringBuilder();
@@ -41,7 +53,7 @@ public class Core {
     }
 
     /**
-     * Corrige certains noms pourraves de compétences
+     * Corrige des noms de certaines compétences inadaptés
      */
     public static ArrayList<String> correctPerksNames(ArrayList<String> input) {
         int length = input.size();
@@ -58,14 +70,13 @@ public class Core {
     }
 
     /**
-     * Méthode getChamps : permet de récupérer les champions dans une liste de String
+     * Permet de récupérer les champions dans une liste de String
      */
     public static ArrayList<String> getChamps() {
         ArrayList<String> champs = new ArrayList<String>();
-        String url = "https://lol.gamepedia.com/Portal:Champions/List";
         String reponse = null;
         try {
-            reponse = getHTML(url);
+            reponse = getHTML(gamepediaChampsNamesList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,12 +90,12 @@ public class Core {
         // On supprime le champ "search" trouvé
         champs.remove(0);
         // Correction de noms de champions complexes
-        Pattern p = Pattern.compile("[^A-Za-z0-9]");
+        Pattern p = Pattern.compile(specialCharsRegex);
         for (String str : champs) {
             Matcher m = p.matcher(str);
             if (m.find()) {
                 champs.set(
-                        champs.indexOf(str), str.replaceAll("[^a-zA-Z0-9]", "")
+                        champs.indexOf(str), str.replaceAll(specialCharsRegex, "")
                 );
             }
         }
@@ -92,7 +103,8 @@ public class Core {
     }
 
     /**
-     * Récupère le détail d'un champion à partir de son nom
+     * Récupère le détail d'un champion à partir de son nom depuis le site op gg
+     * (position non précisée donc op gg renvoie la plus populaire par défaut)
      */
     public static DetailsDto getInfo(String champName) throws Exception {
         String stats = null;
@@ -101,7 +113,7 @@ public class Core {
         String position = "";
         DetailsDto retour = new DetailsDto();
         try {
-            stats = getHTML("http://www.op.gg/champion/" + champName + "/statistics");
+            stats = getHTML( opggDetailChampURI + champName + "/statistics");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -131,7 +143,7 @@ public class Core {
         }
         if(titleTag.size() == 1) {
             try {
-                String tmp = titleTag.get(0).toString().replaceAll("[^a-zA-Z0-9]", "");
+                String tmp = titleTag.get(0).toString().replaceAll(specialCharsRegex, "");
                 for(String pos : positions) {
                     if(tmp.toLowerCase().contains(pos)) { position = pos; }
                 }
