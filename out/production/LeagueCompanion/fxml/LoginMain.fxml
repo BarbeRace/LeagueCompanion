@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="660.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="11.0" prefHeight="55.0" prefWidth="117.0" text="League" textFill="#2196f3">
+            <font>
+                <Font name="Roboto Regular" size="27.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="156.0" layoutY="11.0" prefHeight="55.0" prefWidth="144.0" text="Companion" textFill="#a0a2ab">
+            <font>
+                <Font name="Roboto Regular" size="27.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/leaguelogobluegradient4848.png" />
+            </image>
+        </ImageView>
+        <ListView fx:id="champsList" layoutX="170.0" layoutY="109.0" onMouseClicked="#onChampSelected" prefHeight="278.0" prefWidth="285.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="109.0" />
+        <Label fx:id="textHelper" layoutX="239.0" layoutY="73.0" text="Select a champion below" textFill="#a0a2ab">
+            <font>
+                <Font name="Roboto Regular" size="16.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="loaderGif" fitHeight="48.0" fitWidth="48.0" layoutX="306.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/loading.gif" />
+            </image>
+        </ImageView>
+      <ImageView fx:id="backIcon" fitHeight="32.0" fitWidth="32.0" layoutX="565.0" layoutY="28.0" onMouseClicked="#goBackToListChamps" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/arrow_left.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="backLabel" layoutX="593.0" layoutY="34.0" onMouseClicked="#goBackToListChamps" text="Back" textFill="#a0a2ab">
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Label>
+      <HBox fx:id="hBox" layoutX="21.0" layoutY="66.0" prefHeight="336.0" prefWidth="622.0">
+         <children>
+            <VBox fx:id="vBox0" prefHeight="336.0" prefWidth="217.0">
+               <children>
+                  <ImageView fx:id="champTile" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="20.0" top="60.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label fx:id="champName" alignment="CENTER" contentDisplay="CENTER" prefWidth="180.0" text="Champion" textAlignment="CENTER" textFill="#2196f3">
+                     <font>
+                        <Font name="Roboto Regular" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Bloom threshold="0.31" />
+                     </effect>
+                  </Label>
+                  <Label fx:id="linkToggleSet" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#toggleSet" prefWidth="180.0" text="voir set 2" textAlignment="CENTER" textFill="#a0a2ab" underline="true">
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox1" prefHeight="336.0" prefWidth="202.0">
+               <children>
+                  <HBox fx:id="submainhbox1" prefHeight="70.0" prefWidth="202.0">
+                     <children>
+                        <ImageView fx:id="vbox1mainperk" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox1perk1" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" top="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="vbox1perk2" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox1perk3" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox1perk4" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox1perk5" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <HBox fx:id="subhbox1" prefHeight="40.0" prefWidth="202.0">
+                     <children>
+                        <ImageView fx:id="vbox1fragment1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox1fragment2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox1fragment3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="202.0" text="Best Pickrate" textAlignment="CENTER" textFill="#3c58fa">
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox2" prefHeight="336.0" prefWidth="208.0">
+               <children>
+                  <HBox fx:id="submainhbox2" prefHeight="70.0" prefWidth="202.0">
+                     <children>
+                        <ImageView fx:id="vbox2mainperk" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox2perk1" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" top="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="vbox2perk2" fitHeight="50.0" fitWidth="50.0" layoutX="85.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox2perk3" fitHeight="50.0" fitWidth="50.0" layoutX="85.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox2perk4" fitHeight="50.0" fitWidth="50.0" layoutX="85.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <ImageView fx:id="vbox2perk5" fitHeight="50.0" fitWidth="50.0" layoutX="85.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin></ImageView>
+                  <HBox fx:id="subhbox2" prefHeight="40.0" prefWidth="202.0">
+                     <children>
+                        <ImageView fx:id="vbox2fragment1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox2fragment2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="vbox2fragment3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="202.0" text="Best Winrate" textAlignment="CENTER" textFill="#3c58fa">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Roboto Regular" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

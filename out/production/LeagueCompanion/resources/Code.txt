@@ -1,0 +1,5 @@
+#2d3447 dark grey
+#a0a2ab light grey
+#151928 black back
+#3c58fa purple blue
+#2196f3 light blue
