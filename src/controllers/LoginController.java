@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     ObservableList list = FXCollections.observableArrayList();
+    ObservableList<String> positionsObsList = FXCollections.observableList(Core.positions);
     private int set = 1; // varie entre 1 et 2 (les 2 sets proposés par op gg)
     private DetailsDto champDetails;
     @FXML private Label textHelper;
@@ -30,6 +31,7 @@ public class LoginController implements Initializable {
     @FXML private ImageView champTile;
     @FXML private Label champName;
     @FXML private Label linkToggleSet;
+    @FXML private ChoiceBox<String> positionSelector;
     @FXML private HBox hBox;
     @FXML private VBox vBox0;
     @FXML private VBox vBox1;
@@ -60,6 +62,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loaderGif.setVisible(false);
+        positionSelector.setItems(positionsObsList);
         selectionChampsScene();
         this.fetchChamps();
         this.linkToggleSet.setText("voir set 2");
@@ -76,6 +79,10 @@ public class LoginController implements Initializable {
             Image img = new Image("resources/riotIcons/champs/" + selectedChamp + ".jpg");
             champTile.setImage(img);
             champName.setText(selectedChamp);
+            if(!"".equals(details.getPosition())) {
+                System.out.println(details.getPosition());
+                positionSelector.setValue(details.getPosition());
+            }
         } catch (Exception ex) {
             showErrorBox(ex.getMessage());
         }

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.Bloom?>
@@ -78,6 +79,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
+                  <ChoiceBox fx:id="positionSelector" prefWidth="95.0">
+                     <VBox.margin>
+                        <Insets left="61.0" top="15.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
                </children>
             </VBox>
             <VBox fx:id="vBox1" prefHeight="336.0" prefWidth="202.0">
