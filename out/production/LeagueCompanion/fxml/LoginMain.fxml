@@ -56,7 +56,7 @@
                <children>
                   <ImageView fx:id="champTile" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
-                        <Insets left="20.0" top="60.0" />
+                        <Insets left="20.0" top="18.0" />
                      </VBox.margin>
                   </ImageView>
                   <Label fx:id="champName" alignment="CENTER" contentDisplay="CENTER" prefWidth="180.0" text="Champion" textAlignment="CENTER" textFill="#2196f3">

@@ -13,6 +13,16 @@ import org.jsoup.select.Elements;
 
 public class Core {
 
+    public static final ArrayList<String> positions = new ArrayList<String>() {
+        {
+            add("top");
+            add("jungle");
+            add("middle");
+            add("bottom");
+            add("support");
+        }
+    };
+
     /**
      * Effectue la requête get et retourne la réponse dans un string
      */
@@ -88,6 +98,7 @@ public class Core {
         String stats = null;
         ArrayList<String> perks = new ArrayList<String>();
         ArrayList<String> fragments = new ArrayList<String>();
+        String position = "";
         DetailsDto retour = new DetailsDto();
         try {
             stats = getHTML("http://www.op.gg/champion/" + champName + "/statistics");
@@ -96,6 +107,7 @@ public class Core {
         }
         Document doc = Jsoup.parse(stats);
         Elements imgtags = doc.select("img");
+        Elements titleTag = doc.select("title");
         for (Element e : imgtags) {
             if (!e.attr("src").contains("e_grayscale") && e.attr("src").contains("perk")) {
                 if (!e.attr("alt").contains("Learn more") && e.attr("alt").length() > 2) {
@@ -117,11 +129,23 @@ public class Core {
                 }
             }
         }
+        if(titleTag.size() == 1) {
+            try {
+                String tmp = titleTag.get(0).toString().replaceAll("[^a-zA-Z0-9]", "");
+                for(String pos : positions) {
+                    if(tmp.toLowerCase().contains(pos)) { position = pos; }
+                }
+            } catch (Exception ex) {
+                System.out.println("Problème récupération de la position du champion");
+                System.out.println(titleTag.get(0).toString());
+            }
+        }
         if(perks == null || perks.isEmpty()) {
             throw new Exception("Une erreur est survenue lors du chargement des information du champion " + champName);
         }
         retour.setPerks(correctPerksNames(perks));
         retour.setFragments(fragments);
+        retour.setPosition(position);
         return retour;
     }
 }
